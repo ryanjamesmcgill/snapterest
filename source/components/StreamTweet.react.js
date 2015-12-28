@@ -3,8 +3,13 @@ var ReactDOM = require('react-dom');
 var SnapkiteStreamClient = require('snapkite-stream-client');
 var Header = require('./Header.react');
 var Tweet = require('./Tweet.react');
+var CollectionActionCreators = require('../actions/CollectionActionCreators');
 
 var StreamTweet = React.createClass({
+	addTweetToCollection: function(tweet){
+		console.log('[StreamTweet] addTweetToColleciton called');
+		CollectionActionCreators.addTweetToCollection(tweet);
+	},
 	getInitialState: function(){
 		console.log('[snapterest] StreamTweet: 1. Running getInitialState()');
 		return {
@@ -72,7 +77,7 @@ var StreamTweet = React.createClass({
 				<Header text={this.state.headerText} />
 				<Tweet 
 					tweet={this.props.tweet}
-					onImageClick={this.props.onAddTweetToCollection} />
+					onImageClick={this.addTweetToCollection} />
 			</section>
 		);
 	}
